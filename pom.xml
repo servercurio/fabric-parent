@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Maven Version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Project ID & Version -->
+    <groupId>com.servercurio.fabric</groupId>
+    <artifactId>fabric-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+
+    <!-- Project Packaging -->
+    <packaging>pom</packaging>
+
+    <!-- Project Properties -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
+
+        <!-- Apache Maven Build Plugins -->
+        <plugin.maven.surefire.version>2.22.2</plugin.maven.surefire.version>
+        <plugin.maven.jar.version>3.2.0</plugin.maven.jar.version>
+        <plugin.maven.compiler.version>3.8.1</plugin.maven.compiler.version>
+        <plugin.maven.dependency.version>3.1.2</plugin.maven.dependency.version>
+        <plugin.maven.javadoc.version>3.2.0</plugin.maven.javadoc.version>
+        <plugin.maven.assembly.version>3.3.0</plugin.maven.assembly.version>
+        <plugin.maven.resources.version>3.1.0</plugin.maven.resources.version>
+        <plugin.maven.install.version>2.5.2</plugin.maven.install.version>
+        <plugin.maven.clean.version>3.1.0</plugin.maven.clean.version>
+        <plugin.maven.deploy.version>2.8.2</plugin.maven.deploy.version>
+        <plugin.maven.pmd.version>3.13.0</plugin.maven.pmd.version>
+        <plugin.maven.spotbugs.version>4.0.4</plugin.maven.spotbugs.version>
+        <plugin.maven.checkstyle.version>3.1.1</plugin.maven.checkstyle.version>
+
+        <!-- Third-party Build Plugins -->
+        <plugin.git.commitid.version>4.0.0</plugin.git.commitid.version>
+        <plugin.ow2.asm.version>8.0.1</plugin.ow2.asm.version>
+
+        <!-- SonarQube Properties -->
+        <plugin.jacoco.version>0.8.5</plugin.jacoco.version>
+        <plugin.sonar.version>3.7.0.1746</plugin.sonar.version>
+        <plugin.pmd.version>6.26.0</plugin.pmd.version>
+        <plugin.spotbugs.version>4.1.1</plugin.spotbugs.version>
+        <plugin.checkstyle.version>8.35</plugin.checkstyle.version>
+
+        <sonar.organization>servercurio</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+    </properties>
+
+
+    <!-- Project Dependency Management -->
+    <dependencyManagement>
+
+    </dependencyManagement>
+
+    <!-- Profiles -->
+    <profiles>
+        <profile>
+            <id>missing-maven-opts</id>
+            <activation>
+                <property>
+                    <name>!env.MAVEN_OPTS</name>
+                </property>
+            </activation>
+            <properties>
+                <env.MAVEN_OPTS/>
+            </properties>
+        </profile>
+    </profiles>
+
+    <!-- Project Build Configuration -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${plugin.maven.compiler.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.ow2.asm</groupId>
+                            <artifactId>asm</artifactId>
+                            <version>${plugin.ow2.asm.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${plugin.maven.dependency.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${plugin.maven.jar.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${plugin.maven.surefire.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.ow2.asm</groupId>
+                            <artifactId>asm</artifactId>
+                            <version>${plugin.ow2.asm.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${plugin.maven.javadoc.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${plugin.maven.assembly.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${plugin.maven.resources.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${plugin.maven.install.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${plugin.maven.clean.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${plugin.maven.deploy.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId>
+                    <version>${plugin.git.commitid.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${plugin.jacoco.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>${plugin.maven.pmd.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-core</artifactId>
+                            <version>${plugin.pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-java</artifactId>
+                            <version>${plugin.pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-javascript</artifactId>
+                            <version>${plugin.pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-jsp</artifactId>
+                            <version>${plugin.pmd.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>${plugin.maven.spotbugs.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.github.spotbugs</groupId>
+                            <artifactId>spotbugs</artifactId>
+                            <version>${plugin.spotbugs.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${plugin.maven.checkstyle.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>${plugin.checkstyle.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
